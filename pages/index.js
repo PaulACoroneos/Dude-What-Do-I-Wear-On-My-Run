@@ -1,5 +1,6 @@
 import Head from "next/head";
-import Modal from '../components/modal'
+import Modal from '../components/modal';
+import ClothingArticle from '../components/clothing-article';
 import * as React from "react";
 
 const formReducer = (state, event) => {
@@ -27,23 +28,25 @@ export default function Home() {
         <title>What do I wear on my run?</title>
       </Head>
       <main>
-        <h1 className="text-3xl p-2 bg-blue-100">What do I wear on my run? 🏃‍♀️ 🏃</h1>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0 rounded">
-          <div className="flex flex-col p-4 mt-2">
-            <p className="text-xl p-4">
+        <header>
+        <h1 className="text-4xl leading-none font-extrabold tracking-tight text-left px-2 py-4 md:p-4 border-b-2 bg-blue-400 border-blue-400 shadow">🏃‍♀️ 🏃 What do I wear on my run?</h1>
+        </header>
+        <div className="mx-auto md:max-w-5xl md:px-4 sm:px-6 xl:px-0 rounded">
+          <div className="flex flex-col mt-2">
+            <p className="text-xl p-2">
               It can be hard to figure out what to wear when you're out on a
-              run. Let's figure it out together. 🤝
+              run. Often I spend a lot of time glancing at a variety of conditions before my daily runs. The below form can help you decide what clothing items to wear before you head out the door.
             </p>
             <form onSubmit={handleSumbit}>
               <fieldset>
-                <div className="p-4 mt-2">
+                <div className="p-2 mt-2">
                   <p className="pb-2 text-2xl font-bold">
-                    Outside temperature (Actual) 🌡️
+                    Outside temperature 🌡️
                   </p>
-                  <div className="grid grid-cols-3 items-center content-start gap-1 ">
-                    <label className="border-2 rounded border-blue-400 p-1 flex">
+                  <div className="flex flex-col md:flex-row items-center">
+                    <label className="border-2 rounded border-blue-400 flex w-full md:w-auto md:mr-1">
                       <input
-                        className="form-input flex-1"
+                        className="form-input w-full"
                         name="temp_val"
                         type="number"
                         onChange={setFormData}
@@ -51,21 +54,21 @@ export default function Home() {
                       />
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label"
                     >
                       <input
-                        value="celcius"
-                        checked={formData.temp_unit === "celcius"}
+                        value="celsius"
+                        checked={formData.temp_unit === "celsius"}
                         type="radio"
                         name="temp_unit"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
-                      Celcius
+                      Celsius
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label"
                     >
                       <input
@@ -73,120 +76,120 @@ export default function Home() {
                         checked={formData.temp_unit === "fahrenheit"}
                         type="radio"
                         name="temp_unit"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       Fahrenheit
                     </label>
                   </div>
                 </div>
-                <div className="p-4 mt-2 rounded">
+                <div className="p-2 mt-2">
                   <p className="pb-2 text-2xl font-bold">Wind conditions🎐</p>
-                  <div className="grid grid-cols-4 items-center content-start gap-1">
+                  <div className="flex flex-col md:flex-row items-center">
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label "
                     >
                       <input
                         value="calm"
                         type="radio"
                         name="wind"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       Calm ☺️
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label "
                     >
                       <input
                         value="breezy"
                         type="radio"
                         name="wind"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       Breezy ☁️
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label "
                     >
                       <input
                         value="windy"
                         type="radio"
                         name="wind"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       Windy 🎐
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label "
                     >
                       <input
                         value="high_winds"
                         type="radio"
                         name="wind"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       High Winds 🌬️
                     </label>
                   </div>
                 </div>
-                <div className="p-4 mt-2 rounded">
+                <div className="p-2 mt-2">
                   <p className="pb-2 text-2xl font-bold">Precipitation 💧</p>
-                  <div className="grid grid-cols-4 items-center content-start gap-1">
+                  <div className="flex flex-col md:flex-row items-center">
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label "
                     >
                       <input
                         value="none"
                         type="radio"
                         name="precipitation"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       None 🌤️
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label "
                     >
                       <input
                         value="rain"
                         type="radio"
                         name="precipitation"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       Rain 🌧️
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label"
                     >
                       <input
                         value="sleet"
                         type="radio"
                         name="precipitation"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       Sleet 🧊
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label"
                     >
                       <input
                         value="sleet"
                         type="radio"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         name="precipitation"
                         onChange={setFormData}
                       />{" "}
@@ -194,31 +197,31 @@ export default function Home() {
                     </label>
                   </div>
                 </div>
-                <div className="p-4 mt-2 rounded">
+                <div className="p-2 mt-2">
                   <p className="pb-2 text-2xl font-bold">Time of day ⏲️</p>
-                  <div className="grid grid-cols-2 items-center content-start gap-1">
+                  <div className="flex flex-col md:flex-row items-center">
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label "
                     >
                       <input
                         value="day"
                         type="radio"
                         name="time"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       Day ☀️
                     </label>
                     <label
-                      style={{ margin: 0 }}
+                      style={{ margin: '4px' }}
                       className="form-input-checkbox-label "
                     >
                       <input
                         value="night"
                         type="radio"
                         name="time"
-                        className="form-radio mx-4"
+                        className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                       />{" "}
                       Night 🌕
@@ -228,7 +231,7 @@ export default function Home() {
                 <div className="flex justify-center">
                   <button
                     type="submit"
-                    className="bg-yellow-500 p-4 mt-2 rounded text-2xl"
+                    className="bg-yellow-500 p-4 rounded text-2xl"
                   >
                     👟 Tell me what to wear! 😎
                   </button>
@@ -238,8 +241,11 @@ export default function Home() {
           </div>
         </div>
         {/* modal */}
-        {isModalVisible ? <Modal runData={formData} onClose={handleModalClose} /> : null}
-        <footer className="text-md text-center">
+        {isModalVisible ? <Modal title="Here's what I think you should wear 💪" onClose={handleModalClose}>
+          <ClothingArticle />
+          <span className="text-lg mt-2">Have a safe and wonderful run! 🥳</span>
+        </Modal> : null}
+        <footer className="text-md text-center mt-2">
           <a
             href="https://www.pcoroneos.com"
             target="_blank"

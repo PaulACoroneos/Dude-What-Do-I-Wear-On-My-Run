@@ -3,11 +3,11 @@ import styles from "./modal.module.css";
 import FocusTrap from "focus-trap-react";
 
 type ModalProps = {
-  runData: Record<string, any>;
   onClose: () => void;
+  title: string
 };
 
-const Modal: React.FC<ModalProps> = ({ runData, onClose }) => {
+const Modal: React.FC<ModalProps> = ({  onClose, children, title }) => {
   const ref = React.useRef(null);
   const buttonRef = React.useRef(null);
 
@@ -38,8 +38,6 @@ const Modal: React.FC<ModalProps> = ({ runData, onClose }) => {
     };
   }, []);
 
-  console.log('runData',runData);
-
   return (
     <FocusTrap>
       <div
@@ -50,7 +48,8 @@ const Modal: React.FC<ModalProps> = ({ runData, onClose }) => {
         aria-labelledby="dialog-title"
         aria-describedby="dialog-description"
       >
-        <h1 id="dialog-title">{`hello there, ${JSON.stringify(runData)}`}</h1>
+        <h1 className="text-4xl font-bold">{title}</h1>
+        {children}
         <button
           ref={buttonRef}
           type="button"
