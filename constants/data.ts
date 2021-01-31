@@ -3,14 +3,14 @@ const data = new Map<string, Record<string, any>>([
   [
     "beanie",
     {
-      name: "beanie",
+      name: "Beanie",
       desc: "A fleece lined beanie will keep your head warm on a cold day!",
     },
   ],
   [
     "cap",
     {
-      name: "cap",
+      name: "Cap",
       desc:
         "A cap with a lip will protect your face from sunny rays and rainy days. For hotter days consider wearing a visor.",
     },
@@ -19,7 +19,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "sunglasses",
     {
-      name: "sunglasses",
+      name: "Sunglasses",
       desc:
         "A good pair of sunglasses will protect your eyes from UV radiation during the day.",
     },
@@ -27,7 +27,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "identification",
     {
-      name: "identification",
+      name: "Identification",
       desc:
         "In the event of an emergency it's always good to keep some identification you.",
     },
@@ -36,7 +36,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "shorts",
     {
-      name: "running shorts",
+      name: "Running shorts",
       desc:
         "A nice lightweight pair of shorts are your best friend. Pick a length that suites your comfort.",
     },
@@ -44,7 +44,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "tights",
     {
-      name: "running tights",
+      name: "Running tights",
       desc:
         "For cold breezy runs a pair of running tights will keep your legs nice and warm.",
     },
@@ -53,7 +53,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "shirt",
     {
-      name: "shirt",
+      name: "Shirt",
       desc:
         "Choose a top with good moisture wicking material to stay dry and cool",
     },
@@ -61,14 +61,14 @@ const data = new Map<string, Record<string, any>>([
   [
     "longSleeveShirt",
     {
-      name: "long sleeve shirt",
+      name: "Long sleeve shirt",
       desc: "Works similar to a shirt but with sleeves to keep your arms warm.",
     },
   ],
   [
     "singlet",
     {
-      name: "singlet",
+      name: "Singlet",
       desc: "A good technical singlet is a godsend on a hot summer day.",
     },
   ],
@@ -76,7 +76,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "gloves",
     {
-      name: "gloves",
+      name: "Gloves",
       desc:
         "A thin pair of gloves with our without technical fleece can help to keep your hands warm on cool days.",
     },
@@ -84,7 +84,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "heavyGloves",
     {
-      name: "heavy gloves",
+      name: "Heavy gloves",
       desc:
         "A solid pair of mittens or even adding a pair of gloves liners in colder weather can help keep your fingers nimble.",
     },
@@ -93,7 +93,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "lightJacket",
     {
-      name: "light jacket",
+      name: "Light jacket",
       desc:
         "A light windbreaker, thin jacket, or pullover is good for blustery days.",
     },
@@ -101,7 +101,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "rainJacket",
     {
-      name: "rain jacket",
+      name: "Rain jacket",
       desc:
         "A nice rain jacket is helpful on wetter days. Look for goretex or something with good water repellent capability",
     },
@@ -109,7 +109,7 @@ const data = new Map<string, Record<string, any>>([
   [
     "winterJacket",
     {
-      name: "winter jacket",
+      name: "Winter jacket",
       desc:
         "For very cold days a thick jacket that protects you from the wind. You may consider adding additional layers instead to stay cool as you warm up.",
     },

@@ -90,13 +90,13 @@ export default function Home() {
           <h1 className="text-4xl leading-none font-extrabold tracking-tight text-left px-2 py-4 md:p-4 border-b-2 bg-blue-400 border-blue-400 shadow">
             🏃‍♀️ 🏃 What do I wear on my run?
           </h1>
-          <h2>
-            This app is currently in alpha. Expect frequent changes (see
-            changelog)
-          </h2>
         </header>
         <div className="mx-auto md:max-w-5xl md:px-4 sm:px-6 xl:px-0 rounded">
           <div className="flex flex-col mt-2">
+            <p className="text-2xl font-bold p-2 text-yellow-600">
+              This app is currently in alpha. Expect frequent changes (see
+              changelog)
+            </p>
             <p className="text-xl p-2">
               It can be hard to figure out what to wear when you're out on a
               run. Often I spend a lot of time glancing at a variety of
@@ -117,6 +117,8 @@ export default function Home() {
                         type="number"
                         onChange={setFormData}
                         placeholder="Enter a temperature"
+                        required
+                        type="number"
                       />
                     </label>
                     <label
@@ -130,6 +132,7 @@ export default function Home() {
                         name="temp_unit"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Celsius
                     </label>
@@ -144,6 +147,7 @@ export default function Home() {
                         name="temp_unit"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Fahrenheit
                     </label>
@@ -162,6 +166,7 @@ export default function Home() {
                         name="wind"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Calm ☺️
                     </label>
@@ -175,6 +180,7 @@ export default function Home() {
                         name="wind"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Breezy ☁️
                     </label>
@@ -188,6 +194,7 @@ export default function Home() {
                         name="wind"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Windy 🎐
                     </label>
@@ -201,6 +208,7 @@ export default function Home() {
                         name="wind"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       High Winds 🌬️
                     </label>
@@ -219,6 +227,7 @@ export default function Home() {
                         name="precipitation"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       None 🌤️
                     </label>
@@ -232,6 +241,7 @@ export default function Home() {
                         name="precipitation"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Rain 🌧️
                     </label>
@@ -245,6 +255,7 @@ export default function Home() {
                         name="precipitation"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Sleet 🧊
                     </label>
@@ -258,6 +269,7 @@ export default function Home() {
                         className="form-radio ml-1 mr-2"
                         name="precipitation"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Snow 🌨️
                     </label>
@@ -276,6 +288,7 @@ export default function Home() {
                         name="time"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Day ☀️
                     </label>
@@ -289,6 +302,7 @@ export default function Home() {
                         name="time"
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
+                        required
                       />{" "}
                       Night 🌕
                     </label>
@@ -312,6 +326,14 @@ export default function Home() {
             title="Here's what I think you should wear 💪"
             onClose={handleModalClose}
           >
+            <div className="bg-color-400 flex w-full justify-between">
+              <span className="border-b-2 py-2 px-4 text-2xl font-bold flex items-center bg-blue-300 shadow w-4/12 border-blue-300">
+                Clothing Item
+              </span>
+              <p className="border-b-2 p-2 text-2xl bg-blue-300 shadow flex items-center flex-initial w-8/12 text-left border-blue-300 font-bold">
+                Description
+              </p>
+            </div>
             {/* Identification 🆔*/}
             <ClothingArticle
               desc={clothingData.get("identification").desc}
@@ -358,7 +380,7 @@ export default function Home() {
                 name={jacketSelection.name}
               />
             ) : null}
-            <span className="text-lg mt-2">
+            <span className="text-lg my-4">
               Have a safe and wonderful run! 🥳
             </span>
           </Modal>

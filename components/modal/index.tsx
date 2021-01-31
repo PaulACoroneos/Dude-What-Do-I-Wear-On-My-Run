@@ -54,7 +54,7 @@ const Modal: React.FC<ModalProps> = ({  onClose, children, title }) => {
           ref={buttonRef}
           type="button"
           aria-label="Close what to wear modal"
-          className={styles["close-dialog"]}
+          className="w-40 p-2 rounded bg-blue-300 text-lg font-bold"
           onClick={onClose}
         >
           Close

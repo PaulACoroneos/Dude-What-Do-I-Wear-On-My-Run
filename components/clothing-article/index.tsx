@@ -1,11 +1,11 @@
 import * as React from "react";
 
 const ClothingArticle: React.FC<Record<string, string>> = ({ name, desc }) => (
-  <div className="bg-color-400 flex flex-initial">
-    <span className="border-2 py-2 px-4 rounded text-2xl font-bold flex justify-center items-center bg-blue-200 shadow border-blue-200">
+  <div className="bg-color-400 flex w-full justify-between">
+    <span className="border-b-2 py-2 px-4 text-xl font-bold flex items-center bg-blue-200 shadow w-4/12 border-blue-300">
       {name}
     </span>
-    <p className="border-2 mx-2 p-2 rounded text-xl bg-blue-200 shadow border-blue-200 flex justify-center items-center">
+    <p className="border-b-2 p-2 text-lg bg-blue-200 shadow flex items-center flex-initial w-8/12 text-left border-blue-300">
       {desc}
     </p>
   </div>
