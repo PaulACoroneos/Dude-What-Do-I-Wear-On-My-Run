@@ -65,6 +65,13 @@ const data = new Map<string, Record<string, any>>([
       desc: "Works similar to a shirt but with sleeves to keep your arms warm.",
     },
   ],
+  [
+    "singlet",
+    {
+      name: "singlet",
+      desc: "A good technical singlet is a godsend on a hot summer day.",
+    },
+  ],
   //glove data
   [
     "gloves",
@@ -87,19 +94,26 @@ const data = new Map<string, Record<string, any>>([
     "lightJacket",
     {
       name: "light jacket",
-      desc: "A light windbreaker, thin jacket, or pullover is good for blustery days.",
+      desc:
+        "A light windbreaker, thin jacket, or pullover is good for blustery days.",
     },
-  ],[
+  ],
+  [
     "rainJacket",
     {
       name: "rain jacket",
-      desc: "A nice rain jacket is helpful on wetter days. Look for goretex or something with good water repellent capability",
-    }
+      desc:
+        "A nice rain jacket is helpful on wetter days. Look for goretex or something with good water repellent capability",
+    },
   ],
-  ["winterJacket",{
-    name:"winter jacket",
-    desc:"For very cold days a thick jacket that protects you from the wind. You may consider adding additional layers instead to stay cool as you warm up."
-  }]
+  [
+    "winterJacket",
+    {
+      name: "winter jacket",
+      desc:
+        "For very cold days a thick jacket that protects you from the wind. You may consider adding additional layers instead to stay cool as you warm up.",
+    },
+  ],
 ]);
 
 export default data;

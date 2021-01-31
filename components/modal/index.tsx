@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({  onClose, children, title }) => {
 
   const clickListener = (e: MouseEvent) => {
     if (ref && !(ref?.current).contains(e.target)) {
-      onClose?.(); // using optional chaining here, change to onClose && onClose(), if required
+      onClose?.(); 
     }
   };
 

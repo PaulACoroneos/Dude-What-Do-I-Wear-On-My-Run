@@ -1,7 +1,8 @@
 import Head from "next/head";
-import Modal from '../components/modal';
-import ClothingArticle from '../components/clothing-article';
+import Modal from "../components/modal";
+import ClothingArticle from "../components/clothing-article";
 import * as React from "react";
+import clothingData from "../constants/data";
 
 const formReducer = (state, event) => {
   return {
@@ -10,9 +11,66 @@ const formReducer = (state, event) => {
   };
 };
 
+const determineHatType = (data) => {
+  //There are a lot of states. Going to manually define cases for now. Will optimize later
+
+  //sunny or rainy day above 45 degrees select a cap
+  if (
+    (data.precipitation === "none" || data.precipitation === "rain") &&
+    Number(data.tempVal) > 45
+  )
+    return clothingData.get("cap");
+  //cold day below 45
+  else if (data.tempVal < 45) return clothingData.get("beanie");
+  //otherwise no hat
+  else return null;
+};
+const determineSunglasses = (data) => {
+  return data.time === "day" && data.precipitation === "none"
+    ? clothingData.get("sunglasses")
+    : null;
+};
+
+const determineGloveType = (data) => {
+  //normal gloves
+  if (data.tempVal < 45 && data.tempVal > 20) return clothingData.get("gloves");
+  else if (data.tempVal < 20) return clothingData.get("heavyGloves");
+  else return null;
+};
+
+const determineBottomType = (data) => {
+  if (data.tempVal < 40) {
+    return clothingData.get("tights");
+  }
+  return clothingData.get("shorts");
+};
+
+const determineTopType = (data) => {
+  if (data.tempVal > 80) return clothingData.get("singlet");
+  else if (data.tempVal > 45) return clothingData.get("shirt");
+  return clothingData.get("longSleeveShirt");
+};
+
+const determineJacketType = (data) => {
+  if (data.precipitation === "rain") return clothingData.get("rainJacket");
+  else if (data.wind === "breezy" || data.wind === "heavyWinds")
+    return clothingData.get("lightJacket");
+  else if (data.tempVal < 40 && data.tempVal > 25)
+    return clothingData.get("winterJacket");
+  else return null;
+};
+
 export default function Home() {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [formData, setFormData] = React.useReducer(formReducer, {});
+
+  const hatSelection = determineHatType(formData);
+  const gloveSelection = determineGloveType(formData);
+  const sunglassSelection = determineSunglasses(formData);
+  const bottomSelection = determineBottomType(formData);
+  const topSelection = determineTopType(formData);
+  const jacketSelection = determineJacketType(formData);
+
   const handleSumbit = (event) => {
     event.preventDefault();
     setIsModalVisible(true);
@@ -29,13 +87,21 @@ export default function Home() {
       </Head>
       <main>
         <header>
-        <h1 className="text-4xl leading-none font-extrabold tracking-tight text-left px-2 py-4 md:p-4 border-b-2 bg-blue-400 border-blue-400 shadow">🏃‍♀️ 🏃 What do I wear on my run?</h1>
+          <h1 className="text-4xl leading-none font-extrabold tracking-tight text-left px-2 py-4 md:p-4 border-b-2 bg-blue-400 border-blue-400 shadow">
+            🏃‍♀️ 🏃 What do I wear on my run?
+          </h1>
+          <h2>
+            This app is currently in alpha. Expect frequent changes (see
+            changelog)
+          </h2>
         </header>
         <div className="mx-auto md:max-w-5xl md:px-4 sm:px-6 xl:px-0 rounded">
           <div className="flex flex-col mt-2">
             <p className="text-xl p-2">
               It can be hard to figure out what to wear when you're out on a
-              run. Often I spend a lot of time glancing at a variety of conditions before my daily runs. The below form can help you decide what clothing items to wear before you head out the door.
+              run. Often I spend a lot of time glancing at a variety of
+              conditions before my daily runs. The below form can help you
+              decide what clothing items to wear before you head out the door.
             </p>
             <form onSubmit={handleSumbit}>
               <fieldset>
@@ -47,14 +113,14 @@ export default function Home() {
                     <label className="border-2 rounded border-blue-400 flex w-full md:w-auto md:mr-1">
                       <input
                         className="form-input w-full"
-                        name="temp_val"
+                        name="tempVal"
                         type="number"
                         onChange={setFormData}
                         placeholder="Enter a temperature"
                       />
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label"
                     >
                       <input
@@ -68,7 +134,7 @@ export default function Home() {
                       Celsius
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label"
                     >
                       <input
@@ -87,7 +153,7 @@ export default function Home() {
                   <p className="pb-2 text-2xl font-bold">Wind conditions🎐</p>
                   <div className="flex flex-col md:flex-row items-center">
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label "
                     >
                       <input
@@ -100,7 +166,7 @@ export default function Home() {
                       Calm ☺️
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label "
                     >
                       <input
@@ -113,7 +179,7 @@ export default function Home() {
                       Breezy ☁️
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label "
                     >
                       <input
@@ -126,7 +192,7 @@ export default function Home() {
                       Windy 🎐
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label "
                     >
                       <input
@@ -144,7 +210,7 @@ export default function Home() {
                   <p className="pb-2 text-2xl font-bold">Precipitation 💧</p>
                   <div className="flex flex-col md:flex-row items-center">
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label "
                     >
                       <input
@@ -157,7 +223,7 @@ export default function Home() {
                       None 🌤️
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label "
                     >
                       <input
@@ -170,7 +236,7 @@ export default function Home() {
                       Rain 🌧️
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label"
                     >
                       <input
@@ -183,7 +249,7 @@ export default function Home() {
                       Sleet 🧊
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label"
                     >
                       <input
@@ -201,7 +267,7 @@ export default function Home() {
                   <p className="pb-2 text-2xl font-bold">Time of day ⏲️</p>
                   <div className="flex flex-col md:flex-row items-center">
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label "
                     >
                       <input
@@ -214,7 +280,7 @@ export default function Home() {
                       Day ☀️
                     </label>
                     <label
-                      style={{ margin: '4px' }}
+                      style={{ margin: "4px" }}
                       className="form-input-checkbox-label "
                     >
                       <input
@@ -241,11 +307,70 @@ export default function Home() {
           </div>
         </div>
         {/* modal */}
-        {isModalVisible ? <Modal title="Here's what I think you should wear 💪" onClose={handleModalClose}>
-          <ClothingArticle />
-          <span className="text-lg mt-2">Have a safe and wonderful run! 🥳</span>
-        </Modal> : null}
+        {isModalVisible ? (
+          <Modal
+            title="Here's what I think you should wear 💪"
+            onClose={handleModalClose}
+          >
+            {/* Identification 🆔*/}
+            <ClothingArticle
+              desc={clothingData.get("identification").desc}
+              name={clothingData.get("identification").name}
+            />
+            {/* Hat selection 🤠*/}
+            {hatSelection ? (
+              <ClothingArticle
+                desc={hatSelection.desc}
+                name={hatSelection.name}
+              />
+            ) : null}
+            {/* Glove selection 🧤*/}
+            {gloveSelection ? (
+              <ClothingArticle
+                desc={gloveSelection.desc}
+                name={gloveSelection.name}
+              />
+            ) : null}
+            {/* Sunglass Selection 😎*/}
+            {sunglassSelection ? (
+              <ClothingArticle
+                desc={sunglassSelection.desc}
+                name={sunglassSelection.name}
+              />
+            ) : null}
+            {/* bottom selection 🦵*/}
+            {bottomSelection ? (
+              <ClothingArticle
+                desc={bottomSelection.desc}
+                name={bottomSelection.name}
+              />
+            ) : null}
+            {/* top selection 👕 */}
+            {topSelection ? (
+              <ClothingArticle
+                desc={topSelection.desc}
+                name={topSelection.name}
+              />
+            ) : null}
+            {jacketSelection ? (
+              <ClothingArticle
+                desc={jacketSelection.desc}
+                name={jacketSelection.name}
+              />
+            ) : null}
+            <span className="text-lg mt-2">
+              Have a safe and wonderful run! 🥳
+            </span>
+          </Modal>
+        ) : null}
         <footer className="text-md text-center mt-2">
+          <a
+            href="https://github.com/PaulACoroneos/Dude-What-Do-I-Wear-On-My-Run"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
+          </a>
           <a
             href="https://www.pcoroneos.com"
             target="_blank"
