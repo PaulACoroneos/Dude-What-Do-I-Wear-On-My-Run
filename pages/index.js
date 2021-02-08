@@ -403,13 +403,6 @@ export default function Home() {
         ) : null}
         <footer className="text-md text-center mt-2">
           <a
-            href="https://github.com/PaulACoroneos/Dude-What-Do-I-Wear-On-My-Run"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>
-          <a
             href="https://www.pcoroneos.com"
             target="_blank"
             rel="noopener noreferrer"
