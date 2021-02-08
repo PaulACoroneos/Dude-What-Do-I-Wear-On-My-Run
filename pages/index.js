@@ -62,7 +62,14 @@ const determineJacketType = (data) => {
 
 export default function Home() {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
-  const [formData, setFormData] = React.useReducer(formReducer, {});
+  const [formData, setFormData] = React.useReducer(formReducer, {
+    precipitation: "none",
+    tempVal: "70",
+    temp_unit: "fahrenheit",
+    time: "day",
+    wind: "calm",
+  });
+  console.log("formdata", formData);
 
   const hatSelection = determineHatType(formData);
   const gloveSelection = determineGloveType(formData);
@@ -119,6 +126,7 @@ export default function Home() {
                         placeholder="Enter a temperature"
                         required
                         type="number"
+                        value={formData.tempVal}
                       />
                     </label>
                     <label
@@ -164,6 +172,7 @@ export default function Home() {
                         value="calm"
                         type="radio"
                         name="wind"
+                        checked={formData.wind === "calm"}
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                         required
@@ -178,6 +187,7 @@ export default function Home() {
                         value="breezy"
                         type="radio"
                         name="wind"
+                        checked={formData.wind === "breezy"}
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                         required
@@ -192,6 +202,7 @@ export default function Home() {
                         value="windy"
                         type="radio"
                         name="wind"
+                        checked={formData.wind === "windy"}
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                         required
@@ -206,6 +217,7 @@ export default function Home() {
                         value="high_winds"
                         type="radio"
                         name="wind"
+                        checked={formData.wind === "high_winds"}
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                         required
@@ -225,6 +237,7 @@ export default function Home() {
                         value="none"
                         type="radio"
                         name="precipitation"
+                        checked={formData.precipitation === "none"}
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                         required
@@ -239,6 +252,7 @@ export default function Home() {
                         value="rain"
                         type="radio"
                         name="precipitation"
+                        checked={formData.precipitation === "rain"}
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                         required
@@ -253,6 +267,7 @@ export default function Home() {
                         value="sleet"
                         type="radio"
                         name="precipitation"
+                        checked={formData.precipitation === "sleet"}
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                         required
@@ -264,9 +279,10 @@ export default function Home() {
                       className="form-input-checkbox-label"
                     >
                       <input
-                        value="sleet"
+                        value="snow"
                         type="radio"
                         className="form-radio ml-1 mr-2"
+                        checked={formData.precipitation === "snow"}
                         name="precipitation"
                         onChange={setFormData}
                         required
@@ -287,6 +303,7 @@ export default function Home() {
                         type="radio"
                         name="time"
                         className="form-radio ml-1 mr-2"
+                        checked={formData.time === "day"}
                         onChange={setFormData}
                         required
                       />{" "}
@@ -300,6 +317,7 @@ export default function Home() {
                         value="night"
                         type="radio"
                         name="time"
+                        checked={formData.time === "night"}
                         className="form-radio ml-1 mr-2"
                         onChange={setFormData}
                         required
