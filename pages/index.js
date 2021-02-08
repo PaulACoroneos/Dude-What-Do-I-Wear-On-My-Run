@@ -55,7 +55,7 @@ const determineJacketType = (data) => {
   if (data.precipitation === "rain") return clothingData.get("rainJacket");
   else if (data.wind === "breezy" || data.wind === "heavyWinds")
     return clothingData.get("lightJacket");
-  else if (data.tempVal < 40 && data.tempVal > 25)
+  else if (data.tempVal < 35)
     return clothingData.get("winterJacket");
   else return null;
 };
@@ -69,7 +69,6 @@ export default function Home() {
     time: "day",
     wind: "calm",
   });
-  console.log("formdata", formData);
 
   const hatSelection = determineHatType(formData);
   const gloveSelection = determineGloveType(formData);
@@ -101,8 +100,7 @@ export default function Home() {
         <div className="mx-auto md:max-w-5xl md:px-4 sm:px-6 xl:px-0 rounded">
           <div className="flex flex-col mt-2">
             <p className="text-2xl font-bold p-2 text-yellow-600">
-              This app is currently in alpha. Expect frequent changes (see
-              changelog)
+              This app is currently in alpha. Expect frequent changes
             </p>
             <p className="text-xl p-2">
               It can be hard to figure out what to wear when you're out on a
