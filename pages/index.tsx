@@ -3,6 +3,16 @@ import Modal from "../components/modal";
 import ClothingArticle from "../components/clothing-article";
 import * as React from "react";
 import clothingData from "../constants/data";
+import { on } from "cluster";
+import head from "next/head";
+import {
+  determineHatType,
+  determineGloveType,
+  determineSunglasses,
+  determineBottomType,
+  determineTopType,
+  determineJacketType,
+} from "../utils/static-clothing-utils";
 
 const formReducer = (state, event) => {
   return {
@@ -11,56 +21,7 @@ const formReducer = (state, event) => {
   };
 };
 
-const determineHatType = (data) => {
-  //There are a lot of states. Going to manually define cases for now. Will optimize later
-
-  //sunny or rainy day above 45 degrees select a cap
-  if (
-    (data.precipitation === "none" || data.precipitation === "rain") &&
-    Number(data.tempVal) > 45
-  )
-    return clothingData.get("cap");
-  //cold day below 45
-  else if (data.tempVal < 45) return clothingData.get("beanie");
-  //otherwise no hat
-  else return null;
-};
-const determineSunglasses = (data) => {
-  return data.time === "day" && data.precipitation === "none"
-    ? clothingData.get("sunglasses")
-    : null;
-};
-
-const determineGloveType = (data) => {
-  //normal gloves
-  if (data.tempVal < 45 && data.tempVal > 20) return clothingData.get("gloves");
-  else if (data.tempVal < 20) return clothingData.get("heavyGloves");
-  else return null;
-};
-
-const determineBottomType = (data) => {
-  if (data.tempVal < 40) {
-    return clothingData.get("tights");
-  }
-  return clothingData.get("shorts");
-};
-
-const determineTopType = (data) => {
-  if (data.tempVal > 80) return clothingData.get("singlet");
-  else if (data.tempVal > 45) return clothingData.get("shirt");
-  return clothingData.get("longSleeveShirt");
-};
-
-const determineJacketType = (data) => {
-  if (data.precipitation === "rain") return clothingData.get("rainJacket");
-  else if (data.wind === "breezy" || data.wind === "heavyWinds")
-    return clothingData.get("lightJacket");
-  else if (data.tempVal < 35)
-    return clothingData.get("winterJacket");
-  else return null;
-};
-
-export default function Home() {
+export const Home: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [formData, setFormData] = React.useReducer(formReducer, {
     precipitation: "none",
@@ -70,12 +31,12 @@ export default function Home() {
     wind: "calm",
   });
 
-  const hatSelection = determineHatType(formData);
-  const gloveSelection = determineGloveType(formData);
-  const sunglassSelection = determineSunglasses(formData);
-  const bottomSelection = determineBottomType(formData);
-  const topSelection = determineTopType(formData);
-  const jacketSelection = determineJacketType(formData);
+  const hatSelection = determineHatType(formData, clothingData);
+  const gloveSelection = determineGloveType(formData, clothingData);
+  const sunglassSelection = determineSunglasses(formData, clothingData);
+  const bottomSelection = determineBottomType(formData, clothingData);
+  const topSelection = determineTopType(formData, clothingData);
+  const jacketSelection = determineJacketType(formData, clothingData);
 
   const handleSumbit = (event) => {
     event.preventDefault();
@@ -123,7 +84,6 @@ export default function Home() {
                         onChange={setFormData}
                         placeholder="Enter a temperature"
                         required
-                        type="number"
                         value={formData.tempVal}
                       />
                     </label>
@@ -350,6 +310,7 @@ export default function Home() {
                 Description
               </p>
             </div>
+            {}
             {/* Identification 🆔*/}
             <ClothingArticle
               desc={clothingData.get("identification").desc}
@@ -413,4 +374,6 @@ export default function Home() {
       </main>
     </div>
   );
-}
+};
+
+export default Home;
