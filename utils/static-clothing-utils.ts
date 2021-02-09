@@ -1,4 +1,4 @@
-export const determineHatType = (formData,clothingData) => {
+export const determineHatType = (formData, clothingData) => {
   //There are a lot of states. Going to manually define cases for now. Will optimize later
 
   //sunny or rainy day above 45 degrees select a cap
@@ -13,37 +13,37 @@ export const determineHatType = (formData,clothingData) => {
   else return null;
 };
 
-export const determineSunglasses = (formData,clothingData) => {
+export const determineSunglasses = (formData, clothingData) => {
   return formData.time === "day" && formData.precipitation === "none"
     ? clothingData.get("sunglasses")
     : null;
 };
 
-export const determineGloveType = (formData,clothingData) => {
+export const determineGloveType = (formData, clothingData) => {
   //normal gloves
-  if (formData.tempVal < 45 && formData.tempVal > 20) return clothingData.get("gloves");
+  if (formData.tempVal < 45 && formData.tempVal > 20)
+    return clothingData.get("gloves");
   else if (formData.tempVal < 20) return clothingData.get("heavyGloves");
   else return null;
 };
 
-export const determineBottomType = (formData,clothingData) => {
+export const determineBottomType = (formData, clothingData) => {
   if (formData.tempVal < 40) {
     return clothingData.get("tights");
   }
   return clothingData.get("shorts");
 };
 
-export const determineTopType = (formData,clothingData) => {
+export const determineTopType = (formData, clothingData) => {
   if (formData.tempVal > 80) return clothingData.get("singlet");
   else if (formData.tempVal > 45) return clothingData.get("shirt");
   return clothingData.get("longSleeveShirt");
 };
 
-export const determineJacketType = (formData,clothingData) => {
+export const determineJacketType = (formData, clothingData) => {
   if (formData.precipitation === "rain") return clothingData.get("rainJacket");
   else if (formData.wind === "breezy" || formData.wind === "heavyWinds")
     return clothingData.get("lightJacket");
-  else if (formData.tempVal < 35)
-    return clothingData.get("winterJacket");
+  else if (formData.tempVal < 35) return clothingData.get("winterJacket");
   else return null;
 };
