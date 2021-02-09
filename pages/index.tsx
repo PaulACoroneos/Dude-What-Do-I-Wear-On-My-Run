@@ -1,29 +1,64 @@
-import Head from "next/head";
 import * as React from "react";
+import Head from "next/head";
 import Header from "../components/header";
 import ClothingForm from "../components/clothing-form";
 import ClothingModal from "../components/clothing-modal";
 import clothingData from "../constants/data";
 import Footer from "../components/footer";
-import { ChangeEvent, FormEvent } from "react";
+import { convertFromFahrenheitToCelcius, convertFromCelsiusToFahrenheit } from "../utils/temperature-utilities";
+
+type Precipitation = "none" | "rain" | "sleet" | "snow";
+type TempUnit = "fahrenheit" | "celsius";
+type Time = "day" | "night";
+type Wind = "calm" | "breezy" | "windy" | "heavyWinds";
 
 export type FormState = {
-  precipitation: "none" | "rain" | "sleet" | "snow";
+  precipitation: Precipitation
   tempVal: number;
-  tempUnit: "fahrenheit" | "celsius";
-  time: "day" | "night";
-  wind: string;
+  tempUnit: TempUnit;
+  time: Time;
+  wind: Wind;
   location?: string;
 };
 
 const formReducer = (
   state: FormState,
-  event: ChangeEvent<HTMLInputElement>
+  event: React.ChangeEvent<HTMLInputElement>
 ) => {
-  return {
-    ...state,
-    [event.target.name]: event.target.value,
-  };
+  switch (event.target.name) {
+    case "tempUnit":
+      if (event.target.value !== state.tempUnit) {
+        const newTempVal =
+          event.target.value === "celsius"
+            ? Number(convertFromFahrenheitToCelcius(state.tempVal).toFixed(2))
+            : Number(convertFromCelsiusToFahrenheit(state.tempVal).toFixed(2));
+
+        return {
+          ...state,
+          [event.target.name]: event.target.value as TempUnit,
+          tempVal: newTempVal,
+        };
+      }
+    case "tempVal":
+      if (event.target.value === "celsius") {
+        return {
+          ...state,
+          [event.target.name]: convertFromFahrenheitToCelcius(
+            Number(event.target.value)
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          [event.target.name]: event.target.value,
+        };
+      }
+    default:
+      return {
+        ...state,
+        [event.target.name]: event.target.value,
+      };
+  }
 };
 
 const DEFAULT_FORM_STATE: FormState = {
@@ -32,7 +67,7 @@ const DEFAULT_FORM_STATE: FormState = {
   tempUnit: "fahrenheit",
   time: "day",
   wind: "calm",
-  location: undefined
+  location: undefined,
 };
 
 export const Home: React.FC = () => {
@@ -56,10 +91,13 @@ export const Home: React.FC = () => {
       <Head>
         <title>What do I wear on my run?</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property='og:url' content='https://whatdoiwearonmyrun.com' />
-        <meta property='og:type' content='website' />
-        <meta property='og:title' content='What do I wear on my run?' />
-        <meta property='og:description' content='A website to determine what clothing to wear on a run.' />
+        <meta property="og:url" content="https://whatdoiwearonmyrun.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="What do I wear on my run?" />
+        <meta
+          property="og:description"
+          content="A website to determine what clothing to wear on a run."
+        />
       </Head>
       <main>
         <Header />
