@@ -4,8 +4,8 @@ A SPA that takes a set of criteria and determines what running clothing to wear 
 
 ## Technology Used
 
-React JS
-Tailwind CSS
-Next JS
-Typescript
-Eslint
+- React JS
+- Tailwind CSS
+- Next JS
+- Typescript
+- Eslint
