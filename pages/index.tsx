@@ -8,11 +8,12 @@ import Footer from "../components/footer";
 import { ChangeEvent, FormEvent } from "react";
 
 export type FormState = {
-  precipitation: string;
+  precipitation: "none" | "rain" | "sleet" | "snow";
   tempVal: number;
   tempUnit: "fahrenheit" | "celsius";
   time: "day" | "night";
   wind: string;
+  location?: string;
 };
 
 const formReducer = (
@@ -31,6 +32,7 @@ const DEFAULT_FORM_STATE: FormState = {
   tempUnit: "fahrenheit",
   time: "day",
   wind: "calm",
+  location: undefined
 };
 
 export const Home: React.FC = () => {

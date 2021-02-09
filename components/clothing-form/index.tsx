@@ -1,9 +1,9 @@
 import { FormState } from "../../pages";
 
 export type ClothingFormProps = {
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   setFormData: React.Dispatch<React.ChangeEvent<HTMLInputElement>>;
-  formData: FormState
+  formData: FormState;
 };
 
 const ClothingForm: React.FC<ClothingFormProps> = ({
@@ -12,6 +12,26 @@ const ClothingForm: React.FC<ClothingFormProps> = ({
   formData,
 }) => (
   <form onSubmit={handleSubmit}>
+    <fieldset>
+      <div className="p-2 mt-2">
+        <p className="pb-2 text-2xl font-bold">Enter a location 🗺️</p>
+        <label className="border-2 rounded border-blue-400 flex w-full md:w-auto md:mr-1">
+          <input
+            className="form-input w-full"
+            name="location"
+            type="string"
+            onChange={setFormData}
+            placeholder="Coming soon (disabled)"
+            required
+            disabled
+            value={formData.location}
+          />
+        </label>
+      </div>
+    </fieldset>
+    <div className="p-2 mt-2">
+      <span className="text-3xl font-extrabold py-4 block">- OR -</span>
+    </div>
     <fieldset>
       <div className="p-2 mt-2">
         <p className="pb-2 text-2xl font-bold">Outside temperature 🌡️</p>
