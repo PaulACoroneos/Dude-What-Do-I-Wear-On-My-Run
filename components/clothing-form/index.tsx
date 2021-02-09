@@ -132,10 +132,10 @@ const ClothingForm: React.FC<ClothingFormProps> = ({
             className="form-input-checkbox-label "
           >
             <input
-              value="high_winds"
+              value="heavyWinds"
               type="radio"
               name="wind"
-              checked={formData.wind === "high_winds"}
+              checked={formData.wind === "heavyWinds"}
               className="form-radio ml-1 mr-2"
               onChange={setFormData}
               required
