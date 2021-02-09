@@ -104,7 +104,7 @@ export const Home: React.FC = () => {
         <div className="mx-auto md:max-w-5xl md:px-4 sm:px-6 xl:px-0 rounded">
           <div className="flex flex-col mt-2">
             <p className="text-2xl font-bold p-2 text-yellow-600">
-              This app is currently in alpha. Expect frequent changes
+              This app is currently in alpha. Expect frequent changes.
             </p>
             <p className="text-xl p-2">
               It can be hard to figure out what to wear when you're out on a
