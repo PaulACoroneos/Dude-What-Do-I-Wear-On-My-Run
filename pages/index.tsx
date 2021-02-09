@@ -5,17 +5,29 @@ import ClothingForm from "../components/clothing-form";
 import ClothingModal from "../components/clothing-modal";
 import clothingData from "../constants/data";
 import Footer from "../components/footer";
+import { ChangeEvent, FormEvent } from "react";
 
-const formReducer = (state, event) => {
+export type FormState = {
+  precipitation: string;
+  tempVal: number;
+  tempUnit: "fahrenheit" | "celsius";
+  time: "day" | "night";
+  wind: string;
+};
+
+const formReducer = (
+  state: FormState,
+  event: ChangeEvent<HTMLInputElement>
+) => {
   return {
     ...state,
     [event.target.name]: event.target.value,
   };
 };
 
-const DEFAULT_FORM_DATA = {
+const DEFAULT_FORM_STATE: FormState = {
   precipitation: "none",
-  tempVal: "70",
+  tempVal: 70,
   tempUnit: "fahrenheit",
   time: "day",
   wind: "calm",
@@ -25,10 +37,10 @@ export const Home: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [formData, setFormData] = React.useReducer(
     formReducer,
-    DEFAULT_FORM_DATA
+    DEFAULT_FORM_STATE
   );
 
-  const handleSumbit = (event) => {
+  const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsModalVisible(true);
   };

@@ -1,4 +1,11 @@
-const data = new Map<string, Record<string, any>>([
+type Data = {
+  name:string;
+  desc:string;
+}
+
+export type ClothingData = Map<string, Data>;
+
+const data = new Map<string, Data>([
   // hat data
   [
     "beanie",

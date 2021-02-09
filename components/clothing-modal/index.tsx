@@ -1,12 +1,14 @@
 import * as React from "react";
+import { ClothingData } from "../../constants/data";
+import { FormState } from "../../pages";
 import { determineHatType, determineGloveType, determineSunglasses, determineBottomType, determineTopType, determineJacketType } from "../../utils/static-clothing-utils";
 import ClothingArticle from "../clothing-article";
 import Modal from "../modal";
 
 export type ClothingModalProps = {
-  formData: Record<string,string>
+  formData: FormState
   handleModalClose: () => void;
-  clothingData: any; //TODO PAUL. Need to type this
+  clothingData: ClothingData
 };
 
 const ClothingModal: React.FC<ClothingModalProps> = ({
@@ -44,13 +46,6 @@ const ClothingModal: React.FC<ClothingModalProps> = ({
       {hatSelection ? (
         <ClothingArticle desc={hatSelection.desc} name={hatSelection.name} />
       ) : null}
-      {/* Glove selection 🧤*/}
-      {gloveSelection ? (
-        <ClothingArticle
-          desc={gloveSelection.desc}
-          name={gloveSelection.name}
-        />
-      ) : null}
       {/* Sunglass Selection 😎*/}
       {sunglassSelection ? (
         <ClothingArticle
@@ -58,21 +53,29 @@ const ClothingModal: React.FC<ClothingModalProps> = ({
           name={sunglassSelection.name}
         />
       ) : null}
-      {/* bottom selection 🦵*/}
-      {bottomSelection ? (
+      {/* Jacket Selection */}
+      {jacketSelection ? (
         <ClothingArticle
-          desc={bottomSelection.desc}
-          name={bottomSelection.name}
+          desc={jacketSelection.desc}
+          name={jacketSelection.name}
         />
       ) : null}
       {/* top selection 👕 */}
       {topSelection ? (
         <ClothingArticle desc={topSelection.desc} name={topSelection.name} />
       ) : null}
-      {jacketSelection ? (
+      {/* Glove selection 🧤*/}
+      {gloveSelection ? (
         <ClothingArticle
-          desc={jacketSelection.desc}
-          name={jacketSelection.name}
+          desc={gloveSelection.desc}
+          name={gloveSelection.name}
+        />
+      ) : null}
+      {/* bottom selection 🦵*/}
+      {bottomSelection ? (
+        <ClothingArticle
+          desc={bottomSelection.desc}
+          name={bottomSelection.name}
         />
       ) : null}
       <span className="text-lg my-4">Have a safe and wonderful run! 🥳</span>

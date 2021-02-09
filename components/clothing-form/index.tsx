@@ -1,10 +1,11 @@
-import { FormEvent } from "react";
+import { FormState } from "../../pages";
 
 export type ClothingFormProps = {
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => void
-  setFormData: any;
-  formData: Record<string,string>
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+  setFormData: React.Dispatch<React.ChangeEvent<HTMLInputElement>>;
+  formData: FormState
 };
+
 const ClothingForm: React.FC<ClothingFormProps> = ({
   handleSubmit,
   setFormData,
