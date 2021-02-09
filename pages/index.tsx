@@ -53,6 +53,11 @@ export const Home: React.FC = () => {
     <div>
       <Head>
         <title>What do I wear on my run?</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property='og:url' content='https://whatdoiwearonmyrun.com' />
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content='What do I wear on my run?' />
+        <meta property='og:description' content='A website to determine what clothing to wear on a run.' />
       </Head>
       <main>
         <Header />
